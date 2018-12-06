@@ -1,0 +1,186 @@
+# Symbols in the grammar are case-sensitive.
+# 
+# This grammar uses a convention that
+#    - terminals are lowercase          (president)
+#    - preterminals are capitalized     (Noun)
+#    - other nonterminals are all-caps  (NP)
+# 
+# This convention just makes grammars more readable to humans.  Thus:
+#
+#    - When *you* are writing grammars, you should 
+#      follow this convention unless you have a good reason not to.  
+#
+#    - But the  *program* should still work with grammars that don't
+#      follow this convention.  So how can the program reliably tell
+#      the difference between terminal and nonterminal symbols?  If
+#      there is at least one rule for rewriting a symbol, then that
+#      symbol is a nonterminal and should be rewritten.
+#######################
+
+# Rules for creating full sentences.
+
+1	ROOT	SQ QUE
+1	ROOT	YNQ QUE
+1	ROOT	SA FINAL
+4	ROOT	SP FINAL
+
+# The basic grammar rules.  Here's what the abbreviations stand for:
+#    S  = sentence
+#    NP = noun phrase
+#    VP = verb phrase
+#    PP = prepositional phrase
+#    Det = determiner (sometimes called "article")
+#    Prep = preposition
+#    Adj = adjective
+#    SP = general phrase .. for allowing several phrases without a dot
+#    SA = phrase AND phrase
+#    SQ = question phrase
+#    VG = present progressive
+#    NNP = a description NOUN
+#    DESC = description of noun
+#    Coord = and
+#    Comp = that
+#    SBAR = concat Nouns/ verbs
+
+7	SP	NP VP
+4   SP   NNPRP VG NNP
+4   SP   NNPRP VG
+1   SA   SP Coord SP
+2   SQ   ISIT NP VP
+2   SQ   ISIT NNPRP VG
+2   YNQ   YN NNPRP VPY
+2   YNQ   YN NNPRP VPY
+
+
+8   VP  VP PP
+8   VP  Adv VP
+1   VP  Vi SBAR
+20	VP	Vi NNP
+20	VP	Vi OBNNP
+1	VP	Vi NNP SBAR
+1	VP	Vi OBNNP SBAR
+
+20	VPY	Vt NNP
+20	VPY	Vt OBNNP
+1	VPY	Vt NNP SBAR
+1	VPY	Vt OBNNP SBAR
+
+
+
+1   VP  VP Coord VP
+
+4   VG  IS VGB
+1   VG  IS VGB OBNNP SBAR
+
+2   OBNNP  Det Noun
+2   SBNNP  ANDet ANNoun
+2   SBNNP  ADet ANoun
+5	OBNNP	Det DESC Noun
+5	SBNNP	ADESC ANoun
+5	SBNNP	ANDESC ANNoun
+1	OBNNP	Det Noun
+1	SBNNP	ANDet ANNoun
+1	SBNNP	ADet ANoun
+1	OBNNP	Det DESC Noun
+1	SBNNP	ADESC ANoun
+1	SBNNP	ANDESC ANNoun
+1	SBNNP	Det Noun
+
+1 NNP OBNNP
+1 NNP SBNNP
+
+1   Noun ANNoun
+1   Noun ANoun
+
+8   NP  NNPRP
+6   NP  NNP
+1   NP  Noun Coord NNP
+
+100 DESC  Adj #add note about what is that
+1   DESC  Adj DESC
+1   DESC  Adj DESC
+
+1   ADESC AAdj DESC
+1   ANDESC ANAdj DESC
+
+1   Adj AAdj
+1   Adj ANAdj
+
+1	PP	Prep Det Noun
+1	PP	Prep NNPRP
+
+300   SBAR  Comp NNP VP
+1   SBAR  SBAR Coord SBAR
+
+# Vocabulary.  Your program can see that "ate" is a terminal
+# symbol because there exists no rule for rewriting it.
+# Any symbol that can rewrite as a terminal (or a string of 
+# terminals, like "chief of staff") is called a "preterminal."  Notice 
+# that a preterminal is a special kind of nonterminal.
+
+
+1	Vt	eat
+1   Vt  shrink
+
+1   Vi  thought
+1	Vi	ate
+1	Vi	wanted
+1	Vi	kissed
+1	Vi	understood
+1   Vi  sighed
+1   Vi  worked
+
+1   VGB eating
+
+1   IS is
+
+1	Det	the
+1	Det	every
+
+1   ADet a
+1   ANDet an
+
+1	ANoun	president
+1	ANoun	sandwich
+1	ANoun	pickle
+1	ANoun	chief of staff
+1	ANoun	floor
+1   ANoun    proposal
+1   ANoun    desk
+
+1   ANNoun    apple
+1   ANNoun    office
+1   ANNoun    exercise
+
+1   NNPRP   Sally
+1   NNPRP   it
+
+1	AAdj	fine
+1	AAdj	delicious
+1	AAdj	perplexed
+1	AAdj	pickled
+1   AAdj    lazy
+
+1   Adv  very
+
+1   ANAdj   amazing
+1   ANAdj   awesome
+1   ANAdj   oval
+
+1   YN will
+1   YN did
+
+1	Prep	with
+1	Prep	on
+1	Prep	under
+1	Prep	in
+
+1   Comp    that
+
+1   Coord   and
+
+
+1 ISIT is it true that
+1 FINAL .
+1 FINAL !
+1 QUE ?
