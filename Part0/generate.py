@@ -54,14 +54,11 @@ if __name__ == '__main__':
     import sys
     args = sys.argv
     if DEBUG:
-        args = ["nn", "../Part1/grammer", "-n", "100"]
-    grammer_file = args[1]
-    num_sentences = 1
-    if len(args) > 2 and args[2] == "-n":
-         num_sentences = int(args[3])
+        args = ["nn", "../Part4/grammar4", "-n", "100"]
+    grammar_file = args[1]
+    num_sentences = int(args[3]) if len(args) > 2 and args[2] == "-n" else 1
 
-    pcfg = PCFG.from_file(args[1])
-
+    pcfg = PCFG.from_file(grammar_file)
     for _ in range(num_sentences):
         print(pcfg.random_sent())
 

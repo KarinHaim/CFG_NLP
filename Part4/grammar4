@@ -20,6 +20,7 @@
 # Rules for creating full sentences.
 
 1	ROOT	SQ QUE
+1	ROOT	YNQ QUE
 1	ROOT	SA FINAL
 4	ROOT	SP FINAL
 
@@ -47,33 +48,63 @@
 1   SA   SP Coord SP
 2   SQ   ISIT NP VP
 2   SQ   ISIT NNPRP VG
+2   YNQ   YN NNPRP VPY
+2   YNQ   YN NNPRP VPY
 
 
 8   VP  VP PP
 8   VP  Adv VP
 1   VP  Vi SBAR
-20	VP	Vt NNP
-20	VP	Vt Det DESC Noun
-1	VP	Vt NNP SBAR
-1	VP	Vt Det DESC Noun SBAR
-1   VP  VP Coord VP
-4   VG  IS VGB
-16   VG  IS VGB NNP
-1   VG  IS VGB NNP SBAR
+20	VP	Vi NNP
+20	VP	Vi OBNNP
+1	VP	Vi NNP SBAR
+1	VP	Vi OBNNP SBAR
 
-2   NNP  Det Noun
-5	NNP	Det DESC Noun
-1	NNP	Det Noun PP
-1	NNP	Det DESC Noun PP
-1	NNP	Det Noun PP
+20	VPY	Vt NNP
+20	VPY	Vt OBNNP
+1	VPY	Vt NNP SBAR
+1	VPY	Vt OBNNP SBAR
+
+
+
+1   VP  VP Coord VP
+
+4   VG  IS VGB
+1   VG  IS VGB OBNNP SBAR
+
+2   OBNNP  Det Noun
+2   SBNNP  ANDet ANNoun
+2   SBNNP  ADet ANoun
+5	OBNNP	Det DESC Noun
+5	SBNNP	ADESC ANoun
+5	SBNNP	ANDESC ANNoun
+1	OBNNP	Det Noun
+1	SBNNP	ANDet ANNoun
+1	SBNNP	ADet ANoun
+1	OBNNP	Det DESC Noun
+1	SBNNP	ADESC ANoun
+1	SBNNP	ANDESC ANNoun
+1	SBNNP	Det Noun
+
+1 NNP OBNNP
+1 NNP SBNNP
+
+1   Noun ANNoun
+1   Noun ANoun
 
 8   NP  NNPRP
 6   NP  NNP
-1   NP  Noun Coord NNP VP
+1   NP  Noun Coord NNP
 
-100   DESC  Adj #add note about what is that
+100 DESC  Adj #add note about what is that
 1   DESC  Adj DESC
-1   DESC  Adv DESC
+1   DESC  Adj DESC
+
+1   ADESC AAdj DESC
+1   ANDESC ANAdj DESC
+
+1   Adj AAdj
+1   Adj ANAdj
 
 1	PP	Prep Det Noun
 1	PP	Prep NNPRP
@@ -88,8 +119,8 @@
 # that a preterminal is a special kind of nonterminal.
 
 
-1	Vt	pickled
-1   Vt  perplexed
+1	Vt	eat
+1   Vt  shrink
 
 1   Vi  thought
 1	Vi	ate
@@ -104,25 +135,40 @@
 1   IS is
 
 1	Det	the
-1	Det	a
 1	Det	every
 
-1	Noun	president
-1	Noun	sandwich
-1	Noun	pickle
-1	Noun	chief of staff
-1	Noun	floor
-1   Noun    proposal
-1   Noun    desk
+1   ADet a
+1   ANDet an
+
+1	ANoun	president
+1	ANoun	sandwich
+1	ANoun	pickle
+1	ANoun	chief of staff
+1	ANoun	floor
+1   ANoun    proposal
+1   ANoun    desk
+
+1   ANNoun    apple
+1   ANNoun    office
+1   ANNoun    exercise
 
 1   NNPRP   Sally
 1   NNPRP   it
 
-1	Adj	fine
-1	Adj	delicious
-1	Adj	perplexed
-1	Adj	pickled
-1   Adj lazy
+1	AAdj	fine
+1	AAdj	delicious
+1	AAdj	perplexed
+1	AAdj	pickled
+1   AAdj    lazy
+
+1   Adv  very
+
+1   ANAdj   amazing
+1   ANAdj   awesome
+1   ANAdj   oval
+
+1   YN will
+1   YN did
 
 1	Prep	with
 1	Prep	on
@@ -133,7 +179,6 @@
 
 1   Coord   and
 
-1   Adv  very
 
 1 ISIT is it true that
 1 FINAL .

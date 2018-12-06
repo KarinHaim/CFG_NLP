@@ -50,7 +50,7 @@ class PCFG(object):
 if __name__ == '__main__':
 
     import sys
-    args = ["nn", "grammer"]
+    args = ["nn", "grammar"]
     pcfg = PCFG.from_file(args[1])
     print(pcfg.random_sent())
 

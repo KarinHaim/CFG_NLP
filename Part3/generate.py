@@ -62,7 +62,7 @@ if __name__ == '__main__':
     import sys
     args = sys.argv
     if DEBUG:
-        args = ["nn", "../Part1/grammer", "-n", "5", "-t"]
+        args = ["nn", "../Part1/grammar", "-n", "100", "-t"]
 
     # check if -t entered
     break_flag = False
